@@ -17,7 +17,7 @@ export default function BirthdayForm({ onGenerate }) {
     if (isValid) onGenerate({ year, month, day, hour })
   }
 
-  const selectClass = "bg-[var(--color-bg-mid)] text-[var(--color-gold)] border border-[var(--color-gold-dark)] rounded px-3 py-2 text-base focus:outline-none focus:border-[var(--color-gold)]"
+  const selectClass = "bg-bg-mid text-gold border border-gold-dark rounded px-3 py-2 text-base focus:outline-none focus:border-gold"
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col items-center gap-4 py-4">
@@ -48,8 +48,8 @@ export default function BirthdayForm({ onGenerate }) {
       <button
         type="submit"
         disabled={!isValid}
-        className="px-8 py-2 text-lg rounded-lg border-2 border-[var(--color-gold)]
-          text-[var(--color-gold)] bg-transparent hover:bg-[var(--color-gold)] hover:text-[var(--color-bg-deep)]
+        className="px-8 py-2 text-lg rounded-lg border-2 border-gold
+          text-gold bg-transparent hover:bg-gold hover:text-bg-deep
           transition-all disabled:opacity-40 disabled:cursor-not-allowed"
       >
         生成号码

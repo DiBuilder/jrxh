@@ -108,7 +108,7 @@ export default function HomePage() {
         )}
 
         {activeTab === 'birth' && !currentNumbers && (
-          <div className="py-12 text-[var(--color-gold-light)]/50 text-base">
+          <div className="py-12 text-gold-light/50 text-base">
             填入生辰信息，点击生成号码
           </div>
         )}

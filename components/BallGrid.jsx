@@ -6,7 +6,7 @@ export default function BallGrid({ reds, blues, labelRed, labelBlue }) {
   return (
     <div className="flex flex-col items-center gap-6 py-6 lg:py-10">
       <div className="flex flex-col items-center gap-3">
-        <span className="text-sm lg:text-base tracking-widest text-[var(--color-gold-light)]/70">
+        <span className="text-sm lg:text-base tracking-widest text-gold-light/70">
           {labelRed}
         </span>
         <div className="flex flex-wrap justify-center gap-3 lg:gap-4">
@@ -14,10 +14,10 @@ export default function BallGrid({ reds, blues, labelRed, labelBlue }) {
             <div
               key={`r-${i}`}
               className={`${ballSize} rounded-full flex items-center justify-center
-                bg-[var(--color-bg-mid)] border-2 border-[var(--color-gold)]
+                bg-bg-mid border-2 border-gold
                 shadow-lg shadow-black/30`}
             >
-              <span className="text-[var(--color-gold-light)] font-bold text-lg sm:text-xl lg:text-2xl">
+              <span className="text-gold-light font-bold text-lg sm:text-xl lg:text-2xl">
                 {String(num).padStart(2, '0')}
               </span>
             </div>
@@ -26,7 +26,7 @@ export default function BallGrid({ reds, blues, labelRed, labelBlue }) {
       </div>
 
       <div className="flex flex-col items-center gap-3">
-        <span className="text-sm lg:text-base tracking-widest text-[var(--color-gold-light)]/70">
+        <span className="text-sm lg:text-base tracking-widest text-gold-light/70">
           {labelBlue}
         </span>
         <div className="flex flex-wrap justify-center gap-3 lg:gap-4">
@@ -34,10 +34,10 @@ export default function BallGrid({ reds, blues, labelRed, labelBlue }) {
             <div
               key={`b-${i}`}
               className={`${ballSize} rounded-full flex items-center justify-center
-                bg-[var(--color-bg-mid)] border-2 border-[var(--color-gold-light)]
+                bg-bg-mid border-2 border-gold-light
                 shadow-lg shadow-black/30`}
             >
-              <span className="text-[var(--color-gold-light)] font-bold text-lg sm:text-xl lg:text-2xl">
+              <span className="text-gold-light font-bold text-lg sm:text-xl lg:text-2xl">
                 {String(num).padStart(2, '0')}
               </span>
             </div>
