@@ -9,7 +9,7 @@
 - Next.js App Router（预留 SSR 扩展空间，当前全部 `'use client'`）
 - React 19
 - lunar-javascript（农历干支、四柱、纳音）
-- 纯 CSS（CSS 变量驱动主题色）
+- Tailwind CSS v4 + 自定义中国风主题（深红/金色）
 
 ## 页面结构
 
@@ -39,7 +39,7 @@
 app/
   layout.jsx          # metadata、全局字体、主题 CSS 变量
   page.jsx            # 'use client' 主页面，管理全部状态
-  globals.css         # 全局样式 + CSS 变量
+  globals.css         # Tailwind 导入 + @theme 自定义主题
 lib/
   lunar.js            # 封装 lunar-javascript：获取今日干支/宜忌、四柱推算、纳音五行
   wuxing.js           # 五行统计、五行→号码映射、缺五行查找
@@ -116,7 +116,7 @@ components/
 - 中文字体：`"STSong", "SimSun", "Noto Serif SC", serif`
 - 球体：深红底 + 金色边框圆形 + 金色数字，直径约 48-56px
 - 按钮：金色边框 + 深红底 + 金色文字，激活态金色填充
-- 通过 CSS 变量管理主题色
+- Tailwind 主题扩展（`@theme` 自定义颜色/字体）+ CSS 变量兜底
 
 ## 边界情况
 
