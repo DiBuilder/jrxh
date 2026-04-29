@@ -10,8 +10,6 @@ import { getBirthdayBaZi } from '@/lib/lunar'
 import { generateBirth } from '@/lib/lottery'
 import { countWuxing, findMissingWuxing, getNayinWuxing, getWuxingTailDigits, buildNumberPool, fullNumberPool } from '@/lib/wuxing'
 
-const wuxingLib = { findMissingWuxing, getNayinWuxing, getWuxingTailDigits, buildNumberPool, fullNumberPool }
-
 export default function BaziClient() {
   const [showDisclaimer, setShowDisclaimer] = useState(true)
   const [lotteryType, setLotteryType] = useState('ssq')
@@ -22,7 +20,7 @@ export default function BaziClient() {
     const cnts = countWuxing(bazi)
     const solar = Solar.fromYmd(year, month, day)
     const dayNayin = solar.getLunar().getDayNaYin()
-    const result = generateBirth(cnts, dayNayin, lotteryType, wuxingLib)
+    const result = generateBirth(cnts, dayNayin, lotteryType, { findMissingWuxing, getNayinWuxing, getWuxingTailDigits, buildNumberPool, fullNumberPool })
     const missing = result.missingWx
     setBirthResult({
       numbers: result,
@@ -46,7 +44,7 @@ export default function BaziClient() {
     const blues = currentNumbers.blue.map(n => String(n).padStart(2, '0')).join(' ')
     const name = lotteryType === 'ssq' ? '双色球' : '大乐透'
     return `【${name}】${labels.red}：${reds}  ${labels.blue}：${blues}`
-  }, [currentNumbers, lotteryType, labels])
+  }, [currentNumbers, lotteryType])
 
   const handleTypeChange = useCallback((type) => {
     setLotteryType(type)
@@ -75,13 +73,13 @@ export default function BaziClient() {
         )}
 
         {!currentNumbers && (
-          <div className="py-12 text-gold-light/50 text-base">
+          <div className="py-12 text-gold-light/50 text-sm">
             填入生辰信息，点击生成号码
           </div>
         )}
 
         {currentNumbers && (
-          <p className="mt-6 text-base text-gold-light/70 text-center px-4 leading-relaxed">
+          <p className="mt-6 text-sm text-gold-light/70 text-center px-4 leading-relaxed">
             本工具仅供娱乐，不构成购彩建议，彩票中奖号码完全随机，理性购彩，量力而行
           </p>
         )}
@@ -94,8 +92,8 @@ export default function BaziClient() {
         onCopy={handleCopy}
       />
 
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-amber-900/95 border-t border-amber-500/60 py-2 px-4">
-        <p className="max-w-lg mx-auto text-center text-base text-amber-200 font-bold">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</p>
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-amber-900/95 border-t border-amber-500/60 py-1.5 px-4">
+        <p className="max-w-lg mx-auto text-center text-xs text-amber-200 font-bold">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</p>
       </div>
     </div>
   )

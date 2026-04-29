@@ -1,8 +1,9 @@
 'use client'
+import { memo } from 'react'
 
 const ballSize = 'w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16'
 
-export default function BallGrid({ reds, blues, labelRed, labelBlue }) {
+export default memo(function BallGrid({ reds, blues, labelRed, labelBlue }) {
   return (
     <div className="flex flex-col items-center gap-6 py-6 lg:py-10">
       <div className="flex flex-col items-center gap-3">
@@ -46,4 +47,4 @@ export default function BallGrid({ reds, blues, labelRed, labelBlue }) {
       </div>
     </div>
   )
-}
+})

@@ -1,6 +1,7 @@
 'use client'
+import { memo } from 'react'
 
-export default function JieDu({ text, wuxingAnalysis }) {
+export default memo(function JieDu({ text, wuxingAnalysis }) {
   return (
     <div className="flex flex-col items-center gap-2 px-4 py-3 text-center">
       <p className="text-gold-light text-base leading-relaxed max-w-md">
@@ -14,4 +15,4 @@ export default function JieDu({ text, wuxingAnalysis }) {
       )}
     </div>
   )
-}
+})

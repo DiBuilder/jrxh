@@ -4,8 +4,13 @@ import { useState } from 'react'
 const now = new Date()
 const thisYear = now.getFullYear()
 
+const selectClass = "bg-bg-mid text-gold border border-gold-dark rounded px-3 py-2 text-base focus:outline-none focus:border-gold"
+
+const SHI_CHEN_OPTIONS = ['子时 23-01', '丑时 01-03', '寅时 03-05', '卯时 05-07', '辰时 07-09', '巳时 09-11',
+  '午时 11-13', '未时 13-15', '申时 15-17', '酉时 17-19', '戌时 19-21', '亥时 21-23']
+
 export default function BirthdayForm({ onGenerate }) {
-  const [year, setYear] = useState(thisYear - 30)
+  const [year, setYear] = useState(() => thisYear - 30)
   const [month, setMonth] = useState(1)
   const [day, setDay] = useState(1)
   const [hour, setHour] = useState(0)
@@ -16,8 +21,6 @@ export default function BirthdayForm({ onGenerate }) {
     e.preventDefault()
     if (isValid) onGenerate({ year, month, day, hour })
   }
-
-  const selectClass = "bg-bg-mid text-gold border border-gold-dark rounded px-3 py-2 text-base focus:outline-none focus:border-gold"
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col items-center gap-4 py-4">
@@ -38,11 +41,9 @@ export default function BirthdayForm({ onGenerate }) {
           ))}
         </select>
         <select value={hour} onChange={e => setHour(Number(e.target.value))} className={selectClass}>
-          {['子时 23-01', '丑时 01-03', '寅时 03-05', '卯时 05-07', '辰时 07-09', '巳时 09-11',
-            '午时 11-13', '未时 13-15', '申时 15-17', '酉时 17-19', '戌时 19-21', '亥时 21-23']
-            .map((label, i) => (
-              <option key={i} value={i}>{label}</option>
-            ))}
+          {SHI_CHEN_OPTIONS.map((label, i) => (
+            <option key={i} value={i}>{label}</option>
+          ))}
         </select>
       </div>
       <button
@@ -50,7 +51,7 @@ export default function BirthdayForm({ onGenerate }) {
         disabled={!isValid}
         className="px-8 py-2 text-lg rounded-lg border-2 border-gold
           text-gold bg-transparent hover:bg-gold hover:text-bg-deep
-          transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+          transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
       >
         生成号码
       </button>
