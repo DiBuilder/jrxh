@@ -11,7 +11,15 @@ import { generateBirth } from '@/lib/lottery'
 import { countWuxing, findMissingWuxing, getNayinWuxing, getWuxingTailDigits, buildNumberPool, fullNumberPool } from '@/lib/wuxing'
 
 export default function BaziClient() {
-  const [showDisclaimer, setShowDisclaimer] = useState(true)
+  const [showDisclaimer, setShowDisclaimer] = useState(() => {
+    if (typeof window === 'undefined') return true
+    return sessionStorage.getItem('disclaimer-dismissed') !== 'true'
+  })
+
+  const handleDismiss = useCallback(() => {
+    sessionStorage.setItem('disclaimer-dismissed', 'true')
+    setShowDisclaimer(false)
+  }, [])
   const [lotteryType, setLotteryType] = useState('ssq')
   const [birthResult, setBirthResult] = useState(null)
 
@@ -52,7 +60,7 @@ export default function BaziClient() {
   }, [])
 
   if (showDisclaimer) {
-    return <DisclaimerModal onAgree={() => setShowDisclaimer(false)} />
+    return <DisclaimerModal onAgree={handleDismiss} />
   }
 
   return (

@@ -15,7 +15,15 @@ function makeHuangdaoSentence(lunar, luckyList) {
 }
 
 export default function HuangdaoClient() {
-  const [showDisclaimer, setShowDisclaimer] = useState(true)
+  const [showDisclaimer, setShowDisclaimer] = useState(() => {
+    if (typeof window === 'undefined') return true
+    return sessionStorage.getItem('disclaimer-dismissed') !== 'true'
+  })
+
+  const handleDismiss = useCallback(() => {
+    sessionStorage.setItem('disclaimer-dismissed', 'true')
+    setShowDisclaimer(false)
+  }, [])
   const [lotteryType, setLotteryType] = useState('ssq')
   const [regenerateCount, setRegenerateCount] = useState(0)
 
@@ -52,7 +60,7 @@ export default function HuangdaoClient() {
   }, [])
 
   if (showDisclaimer) {
-    return <DisclaimerModal onAgree={() => setShowDisclaimer(false)} />
+    return <DisclaimerModal onAgree={handleDismiss} />
   }
 
   return (
