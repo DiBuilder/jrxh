@@ -1,16 +1,139 @@
-# React + Vite
+# 吉祥选号 (Jixiang Xuanhao)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+基于中国传统命理学的彩票选号工具，支持**双色球**和**大乐透**两种玩法，提供两套独立的选号逻辑。
 
-Currently, two official plugins are available:
+## 技术栈
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Next.js 16 + React + Tailwind CSS v4 + lunar-javascript
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 两套选号规则
 
-## Expanding the ESLint configuration
+### 一、今日黄道选号
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+基于**当日干支**与**时辰吉凶**生成号码，体现"顺天应时"的理念。
+
+#### 算法步骤
+
+1. **获取当日干支索引**：取当日干支（如 `甲子`），天干取位 `g`（甲=0, 乙=1...癸=9），地支取位 `z`（子=0, 丑=1...亥=11），计算 `ganZhiIndex = g × 12 + z`，得到 0~119 范围内的唯一值。
+
+2. **择吉时**：遍历十二地支时辰（子、丑、寅...亥），从黄历中查出当日"宜""忌"，筛选出宜中包含且忌中不包含该地支的时辰作为吉时，取首个吉时的索引 `luckyIndex`（0~11）。
+
+3. **构造种子（Seed）**：
+   ```
+   seed = ganZhiIndex × 100 + luckyIndex + regenerateCount × 7
+   ```
+   - `regenerateCount`：用户点击"换一注"的累计次数，初始为 0。
+   - 乘以 7 是为了让每次换注的种子跳变足够大，避免相邻计数产生相近的随机序列。
+
+4. **线性同余生成器（LCG）**：
+   ```
+   s₀ = seed
+   sₙ₊₁ = (sₙ × 1103515245 + 12345) & 0x7fffffff
+   randₙ = sₙ / 0x7fffffff
+   ```
+   将种子输入 LCG，产出一个 [0, 1) 的伪随机序列。
+
+5. **球池不放回抽取**：
+   - 双色球：红球 1~33 取 6，蓝球 1~16 取 1
+   - 大乐透：红球 1~35 取 5，蓝球 1~12 取 2
+   - 用 LCG 产生的随机数决定每次抽取的位置，取出后从池中移除，保证不重复。
+   - 最终结果从小到大排序。
+
+#### 解断语
+
+由当日干支和吉时拼合，格式为：`今日{干支}日，{时辰}时吉时，生财星入局`
+
+#### 设计意图
+
+同一天内，干支和黄历吉凶是固定的，因此基础种子不变——**保证了当天的号码有统一的"命理底色"**。用户点击"换一注"时，通过递增计数器改变种子，在同一天理框架下生成不同的号码组合。
+
+---
+
+### 二、生辰本命选号
+
+基于用户的**生辰八字**，以五行补缺为原则选号。
+
+#### 算法步骤
+
+1. **排八字**：根据用户输入的公历年月日时，用 `lunar-javascript` 的 `Solar.fromYmdHms` 转换为农历，排出年柱、月柱、日柱、时柱四柱干支（共 8 个字）。
+
+2. **统计五行**：将八字中每个天干地支映射到五行：
+   | 天干 | 五行 | 地支 | 五行 |
+   |------|------|------|------|
+   | 甲乙 | 木   | 寅卯 | 木   |
+   | 丙丁 | 火   | 巳午 | 火   |
+   | 戊己 | 土   | 辰未戌丑 | 土 |
+   | 庚辛 | 金   | 申酉 | 金   |
+   | 壬癸 | 水   | 亥子 | 水   |
+
+   统计金、木、水、火、土各出现了多少次。例如八字 `甲子 丙寅 戊辰 庚申`：木(1) 水(1) 火(1) 木(1) 土(1) 土(1) 金(1) 金(1) → 金=2 木=2 水=1 火=1 土=2
+
+3. **找出缺失五行**：取出现次数最少的那个五行作为"所缺"（如果并列最少，取最先遇到的）。
+
+4. **河图尾数映射**：将五行映射到号码尾数（河图数）：
+   | 五行 | 河图尾数 |
+   |------|-----------|
+   | 水   | 1, 6      |
+   | 火   | 2, 7      |
+   | 木   | 3, 8      |
+   | 金   | 4, 9      |
+   | 土   | 5, 0      |
+
+5. **构建红球候选池**：在 1~max（双色球 33，大乐透 35）范围内，筛选尾数匹配"所缺五行"尾数的号码。例如缺"金"则选尾数为 4、9 的号码（4, 9, 14, 19, 24, 29...）。
+
+6. **红球抽取**：从候选池中不放回抽取所需数量。若候选池不够（如缺金+双色球尾数 4,9 只有 7 个号码，选 6 个够了），则从全池中补足剩余数量。
+
+7. **蓝球选取**：以**日柱纳音五行**（如海中金、炉中火等 30 种纳音）为蓝球五行，映射到尾数，在蓝球范围内构建候选池后抽取。日纳音由生辰日期公历转农历后通过 `getDayNaYin()` 获取。
+
+8. 结果从小到大排序。
+
+#### 解断语
+
+格式为：`八字缺{五行}，取{五行}数补之`
+
+#### 设计意图
+
+以八字五行平衡为核心理念——缺什么补什么。红球补八字所缺五行，蓝球取日柱纳音五行，形成"本命补缺 + 日辰呼应"的双层结构。
+
+---
+
+## 号码生成函数说明
+
+| 函数 | 用途 | 种子来源 | 确定性 |
+|------|------|----------|--------|
+| `generateHuangdao(seed, type)` | 黄道选号 | 干支索引 + 吉时 + 换注计数 | 同种子必同号 |
+| `generateBirth(wuxingCounts, dayNayin, type, wuxingLib)` | 本命选号 | `Date.now()`（毫秒时间戳） | 每次调用都不同 |
+
+两个函数共用底层 `seededRandom` + `pickUnique` 机制，区别仅在于种子策略——黄道强调"天时"（日期决定），本命强调"人和"（八字决定）。
+
+---
+
+## 项目结构
+
+```
+app/
+  page.jsx          # 主页面，管理选号状态和交互
+  layout.jsx        # 根布局
+  globals.css       # 全局样式
+components/
+  TopTabs.jsx       # 顶部 Tab 切换（黄道/本命）
+  BallGrid.jsx      # 号码球展示组件
+  BirthdayForm.jsx  # 生辰信息输入表单
+  JieDu.jsx         # 解断/签文展示
+  BottomBar.jsx     # 底部操作栏（玩法切换/复制）
+lib/
+  lottery.js        # 核心选号算法
+  lunar.js          # 农历/干支/吉时相关
+  wuxing.js         # 五行/河图/纳音映射
+```
+
+## 运行
+
+```bash
+pnpm install
+pnpm dev
+```
+
+打开 http://localhost:3000
