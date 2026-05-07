@@ -18,7 +18,7 @@ export default function BottomBar({ lotteryType, onTypeChange, numbers, onCopy }
   }
 
   return (
-    <div className="sticky bottom-8 bg-bg-deep/95 backdrop-blur-sm border-t border-gold-dark/40">
+    <div className="bg-bg-deep/95 backdrop-blur-sm border-t border-gold-dark/40">
       <div className="flex items-center justify-center gap-4 py-4 px-4">
         <div className="flex gap-1">
           <button

@@ -7,4 +7,10 @@
   --color-gold-light: #FFD700;
   --color-gold-dark: #B8860B;
   --font-family-chinese: "STSong", "SimSun", "Noto Serif SC", serif;
+  --animate-marquee: marquee 12s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }

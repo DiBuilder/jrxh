@@ -1,5 +1,5 @@
 'use client'
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { Solar } from 'lunar-javascript'
 import BallGrid from '@/components/BallGrid'
 import BottomBar from '@/components/BottomBar'
@@ -11,10 +11,13 @@ import { generateBirth } from '@/lib/lottery'
 import { countWuxing, findMissingWuxing, getNayinWuxing, getWuxingTailDigits, buildNumberPool, fullNumberPool } from '@/lib/wuxing'
 
 export default function BaziClient() {
-  const [showDisclaimer, setShowDisclaimer] = useState(() => {
-    if (typeof window === 'undefined') return true
-    return sessionStorage.getItem('disclaimer-dismissed') !== 'true'
-  })
+  const [showDisclaimer, setShowDisclaimer] = useState(true)
+
+  useEffect(() => {
+    if (sessionStorage.getItem('disclaimer-dismissed') === 'true') {
+      setShowDisclaimer(false)
+    }
+  }, [])
 
   const handleDismiss = useCallback(() => {
     sessionStorage.setItem('disclaimer-dismissed', 'true')
@@ -64,8 +67,8 @@ export default function BaziClient() {
   }
 
   return (
-    <div className="min-h-screen pb-24 max-w-lg mx-auto">
-      <div className="flex flex-col items-center pt-2">
+    <div className="min-h-screen max-w-lg mx-auto flex flex-col">
+      <div className="flex-1 flex flex-col items-center pt-2">
         <BirthdayForm onGenerate={handleBirthGenerate} />
 
         {currentNumbers && (
@@ -86,11 +89,6 @@ export default function BaziClient() {
           </div>
         )}
 
-        {currentNumbers && (
-          <p className="mt-6 text-sm text-gold-light/70 text-center px-4 leading-relaxed">
-            本工具仅供娱乐，不构成购彩建议，彩票中奖号码完全随机，理性购彩，量力而行
-          </p>
-        )}
       </div>
 
       <BottomBar
@@ -100,8 +98,11 @@ export default function BaziClient() {
         onCopy={handleCopy}
       />
 
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-amber-900/95 border-t border-amber-500/60 py-1.5 px-4">
-        <p className="max-w-lg mx-auto text-center text-xs text-amber-200 font-bold">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</p>
+      <div className="bg-amber-900/95 border-t border-amber-500/60 py-1.5 overflow-hidden">
+        <div className="flex whitespace-nowrap animate-marquee w-max">
+          <span className="text-xs text-amber-200 font-bold pr-8">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</span>
+          <span className="text-xs text-amber-200 font-bold pr-8">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</span>
+        </div>
       </div>
     </div>
   )

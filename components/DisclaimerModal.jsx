@@ -14,7 +14,7 @@ export default function DisclaimerModal({ onAgree }) {
 
         <button
           onClick={onAgree}
-          className="px-8 py-3 text-lg font-bold rounded-lg bg-gold text-bg-deep hover:bg-gold-light transition-colors"
+          className="px-6 py-3 text-base sm:text-lg font-bold rounded-lg bg-gold text-bg-deep hover:bg-gold-light transition-colors whitespace-nowrap"
         >
           我已阅读并同意，仅用于娱乐用途
         </button>

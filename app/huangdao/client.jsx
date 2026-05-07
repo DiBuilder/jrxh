@@ -1,5 +1,5 @@
 'use client'
-import { useState, useCallback, useMemo } from 'react'
+import { useState, useCallback, useMemo, useEffect } from 'react'
 import BallGrid from '@/components/BallGrid'
 import BottomBar from '@/components/BottomBar'
 import DisclaimerModal from '@/components/DisclaimerModal'
@@ -15,10 +15,13 @@ function makeHuangdaoSentence(lunar, luckyList) {
 }
 
 export default function HuangdaoClient() {
-  const [showDisclaimer, setShowDisclaimer] = useState(() => {
-    if (typeof window === 'undefined') return true
-    return sessionStorage.getItem('disclaimer-dismissed') !== 'true'
-  })
+  const [showDisclaimer, setShowDisclaimer] = useState(true)
+
+  useEffect(() => {
+    if (sessionStorage.getItem('disclaimer-dismissed') === 'true') {
+      setShowDisclaimer(false)
+    }
+  }, [])
 
   const handleDismiss = useCallback(() => {
     sessionStorage.setItem('disclaimer-dismissed', 'true')
@@ -64,8 +67,8 @@ export default function HuangdaoClient() {
   }
 
   return (
-    <div className="min-h-screen pb-24 max-w-lg mx-auto">
-      <div className="flex flex-col items-center pt-2">
+    <div className="min-h-screen max-w-lg mx-auto flex flex-col">
+      <div className="flex-1 flex flex-col items-center pt-2">
         <button
           onClick={handleRegenerate}
           className="mt-4 px-6 py-2 text-base rounded-lg border-2 border-gold bg-transparent text-gold hover:bg-gold hover:text-bg-deep transition-colors"
@@ -81,9 +84,6 @@ export default function HuangdaoClient() {
         />
         <JieDu text={todayNumbers.jieDu} />
 
-        <p className="mt-6 text-sm text-gold-light/70 text-center px-4 leading-relaxed">
-          本工具仅供娱乐，不构成购彩建议，彩票中奖号码完全随机，理性购彩，量力而行
-        </p>
       </div>
 
       <BottomBar
@@ -93,8 +93,11 @@ export default function HuangdaoClient() {
         onCopy={handleCopy}
       />
 
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-amber-900/95 border-t border-amber-500/60 py-1.5 px-4">
-        <p className="max-w-lg mx-auto text-center text-xs text-amber-200 font-bold">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</p>
+      <div className="bg-amber-900/95 border-t border-amber-500/60 py-1.5 overflow-hidden">
+        <div className="flex whitespace-nowrap animate-marquee w-max">
+          <span className="text-xs text-amber-200 font-bold pr-8">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</span>
+          <span className="text-xs text-amber-200 font-bold pr-8">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</span>
+        </div>
       </div>
     </div>
   )
