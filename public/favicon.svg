@@ -1,0 +1,12 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="120" height="120" rx="28" fill="#E85D4A"/>
+  <circle cx="60" cy="52" r="32" stroke="white" stroke-opacity="0.2" stroke-width="1.5" fill="none"/>
+  <circle cx="42" cy="46" r="8" fill="white" fill-opacity="0.9"/>
+  <circle cx="60" cy="40" r="8" fill="white" fill-opacity="0.9"/>
+  <circle cx="78" cy="46" r="8" fill="white" fill-opacity="0.9"/>
+  <text x="42" y="49" text-anchor="middle" font-size="9" font-weight="bold" fill="#E85D4A">8</text>
+  <text x="60" y="43" text-anchor="middle" font-size="9" font-weight="bold" fill="#E85D4A">6</text>
+  <text x="78" y="49" text-anchor="middle" font-size="9" font-weight="bold" fill="#E85D4A">8</text>
+  <text x="60" y="82" text-anchor="middle" font-size="22" font-weight="bold" fill="white" font-family="PingFang SC, Noto Sans SC, sans-serif">吉祥</text>
+  <text x="60" y="100" text-anchor="middle" font-size="8" fill="white" fill-opacity="0.7" font-family="PingFang SC, Noto Sans SC, sans-serif" letter-spacing="2">选号</text>
+</svg>

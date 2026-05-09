@@ -1,5 +1,5 @@
 'use client'
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 import { Solar } from 'lunar-javascript'
 import BallGrid from '@/components/BallGrid'
 import BottomBar from '@/components/BottomBar'
@@ -11,13 +11,9 @@ import { generateBirth } from '@/lib/lottery'
 import { countWuxing, findMissingWuxing, getNayinWuxing, getWuxingTailDigits, buildNumberPool, fullNumberPool } from '@/lib/wuxing'
 
 export default function BaziClient() {
-  const [showDisclaimer, setShowDisclaimer] = useState(true)
-
-  useEffect(() => {
-    if (sessionStorage.getItem('disclaimer-dismissed') === 'true') {
-      setShowDisclaimer(false)
-    }
-  }, [])
+  const [showDisclaimer, setShowDisclaimer] = useState(() =>
+    typeof window !== 'undefined' && sessionStorage.getItem('disclaimer-dismissed') === 'true' ? false : true
+  )
 
   const handleDismiss = useCallback(() => {
     sessionStorage.setItem('disclaimer-dismissed', 'true')
@@ -67,12 +63,15 @@ export default function BaziClient() {
   }
 
   return (
-    <div className="min-h-screen max-w-lg mx-auto flex flex-col">
-      <div className="flex-1 flex flex-col items-center pt-2">
+    <div className="h-full flex flex-col bg-bg-primary overflow-hidden">
+      {/* 内容区 - 可滚动 */}
+      <div className="flex-1 flex flex-col items-center px-3 sm:px-4 overflow-y-auto py-4">
+        {/* 生辰表单 */}
         <BirthdayForm onGenerate={handleBirthGenerate} />
 
+        {/* 号码展示 */}
         {currentNumbers && (
-          <>
+          <div className="w-full mt-4">
             <BallGrid
               reds={currentNumbers.red}
               blues={currentNumbers.blue}
@@ -80,28 +79,30 @@ export default function BaziClient() {
               labelBlue={labels.blue}
             />
             <JieDu text={birthResult.jieDu} wuxingAnalysis={birthResult.wuxingAnalysis} />
-          </>
-        )}
-
-        {!currentNumbers && (
-          <div className="py-12 text-gold-light/50 text-sm">
-            填入生辰信息，点击生成号码
           </div>
         )}
 
+        {/* 空状态提示 */}
+        {!currentNumbers && (
+          <div className="py-12 text-text-tertiary text-sm">
+            填入生辰信息，点击生成号码
+          </div>
+        )}
       </div>
 
-      <BottomBar
-        lotteryType={lotteryType}
-        onTypeChange={handleTypeChange}
-        numbers={currentNumbers}
-        onCopy={handleCopy}
-      />
-
-      <div className="bg-amber-900/95 border-t border-amber-500/60 py-1.5 overflow-hidden">
-        <div className="flex whitespace-nowrap animate-marquee w-max">
-          <span className="text-xs text-amber-200 font-bold pr-8">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</span>
-          <span className="text-xs text-amber-200 font-bold pr-8">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</span>
+      {/* 底部固定区域 */}
+      <div className="shrink-0">
+        <BottomBar
+          lotteryType={lotteryType}
+          onTypeChange={handleTypeChange}
+          numbers={currentNumbers}
+          onCopy={handleCopy}
+        />
+        <div className="bg-bg-tertiary border-t border-border py-1.5 overflow-hidden">
+          <div className="flex whitespace-nowrap animate-marquee w-max">
+            <span className="text-[10px] text-text-tertiary pr-8">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</span>
+            <span className="text-[10px] text-text-tertiary pr-8">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</span>
+          </div>
         </div>
       </div>
     </div>

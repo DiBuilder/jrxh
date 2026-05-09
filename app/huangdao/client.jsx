@@ -1,5 +1,5 @@
 'use client'
-import { useState, useCallback, useMemo, useEffect } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 import BallGrid from '@/components/BallGrid'
 import BottomBar from '@/components/BottomBar'
 import DisclaimerModal from '@/components/DisclaimerModal'
@@ -15,13 +15,9 @@ function makeHuangdaoSentence(lunar, luckyList) {
 }
 
 export default function HuangdaoClient() {
-  const [showDisclaimer, setShowDisclaimer] = useState(true)
-
-  useEffect(() => {
-    if (sessionStorage.getItem('disclaimer-dismissed') === 'true') {
-      setShowDisclaimer(false)
-    }
-  }, [])
+  const [showDisclaimer, setShowDisclaimer] = useState(() =>
+    typeof window !== 'undefined' && sessionStorage.getItem('disclaimer-dismissed') === 'true' ? false : true
+  )
 
   const handleDismiss = useCallback(() => {
     sessionStorage.setItem('disclaimer-dismissed', 'true')
@@ -67,36 +63,44 @@ export default function HuangdaoClient() {
   }
 
   return (
-    <div className="min-h-screen max-w-lg mx-auto flex flex-col">
-      <div className="flex-1 flex flex-col items-center pt-2">
+    <div className="h-full flex flex-col bg-bg-primary overflow-hidden">
+      {/* 内容区 - 可滚动 */}
+      <div className="flex-1 flex flex-col items-center justify-center px-4 overflow-y-auto">
+        {/* 换一注按钮 */}
         <button
           onClick={handleRegenerate}
-          className="mt-4 px-6 py-2 text-base rounded-lg border-2 border-gold bg-transparent text-gold hover:bg-gold hover:text-bg-deep transition-colors"
+          className="mt-4 mb-4 px-5 py-2 text-sm rounded-xl border border-border
+            text-text-secondary hover:text-accent hover:border-accent
+            transition-all duration-200 shrink-0"
         >
           换一注
         </button>
 
+        {/* 号码球 */}
         <BallGrid
           reds={todayNumbers.numbers.red}
           blues={todayNumbers.numbers.blue}
           labelRed={labels.red}
           labelBlue={labels.blue}
         />
-        <JieDu text={todayNumbers.jieDu} />
 
+        {/* 解断语 */}
+        <JieDu text={todayNumbers.jieDu} />
       </div>
 
-      <BottomBar
-        lotteryType={lotteryType}
-        onTypeChange={handleTypeChange}
-        numbers={todayNumbers.numbers}
-        onCopy={handleCopy}
-      />
-
-      <div className="bg-amber-900/95 border-t border-amber-500/60 py-1.5 overflow-hidden">
-        <div className="flex whitespace-nowrap animate-marquee w-max">
-          <span className="text-xs text-amber-200 font-bold pr-8">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</span>
-          <span className="text-xs text-amber-200 font-bold pr-8">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</span>
+      {/* 底部固定区域 */}
+      <div className="shrink-0">
+        <BottomBar
+          lotteryType={lotteryType}
+          onTypeChange={handleTypeChange}
+          numbers={todayNumbers.numbers}
+          onCopy={handleCopy}
+        />
+        <div className="bg-bg-tertiary border-t border-border py-1.5 overflow-hidden">
+          <div className="flex whitespace-nowrap animate-marquee w-max">
+            <span className="text-[10px] text-text-tertiary pr-8">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</span>
+            <span className="text-[10px] text-text-tertiary pr-8">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</span>
+          </div>
         </div>
       </div>
     </div>

@@ -1,8 +1,6 @@
 'use client'
 import { useState } from 'react'
 
-const btnBase = "px-4 py-1.5 text-sm rounded-lg border-2 transition-colors"
-
 export default function BottomBar({ lotteryType, onTypeChange, numbers, onCopy }) {
   const [copied, setCopied] = useState(false)
 
@@ -18,31 +16,39 @@ export default function BottomBar({ lotteryType, onTypeChange, numbers, onCopy }
   }
 
   return (
-    <div className="bg-bg-deep/95 backdrop-blur-sm border-t border-gold-dark/40">
-      <div className="flex items-center justify-center gap-4 py-4 px-4">
-        <div className="flex gap-1">
+    <div className="backdrop-blur-xl bg-white/70 dark:bg-bg-primary/70 border-t border-border/50">
+      <div className="flex items-center justify-center gap-2 sm:gap-3 py-2.5 sm:py-3 px-3 sm:px-4 max-w-lg mx-auto">
+        {/* 彩票类型切换 */}
+        <div className="flex gap-0.5 sm:gap-1 bg-bg-tertiary rounded-lg sm:rounded-xl p-0.5 sm:p-1">
           <button
             onClick={() => onTypeChange('ssq')}
-            className={`${btnBase} ${
+            className={`px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm rounded-md sm:rounded-lg transition-all duration-200 ${
               lotteryType === 'ssq'
-                ? 'bg-gold text-bg-deep border-gold font-bold'
-                : 'bg-transparent text-gold border-gold-dark hover:border-gold'
+                ? 'bg-white dark:bg-bg-secondary text-text-primary shadow-sm font-medium'
+                : 'text-text-tertiary hover:text-text-secondary'
             }`}
           >
             双色球
           </button>
           <button
             onClick={() => onTypeChange('dlt')}
-            className={`${btnBase} ${
+            className={`px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm rounded-md sm:rounded-lg transition-all duration-200 ${
               lotteryType === 'dlt'
-                ? 'bg-gold text-bg-deep border-gold font-bold'
-                : 'bg-transparent text-gold border-gold-dark hover:border-gold'
+                ? 'bg-white dark:bg-bg-secondary text-text-primary shadow-sm font-medium'
+                : 'text-text-tertiary hover:text-text-secondary'
             }`}
           >
             大乐透
           </button>
         </div>
-        <button onClick={handleCopy} className={`${btnBase} bg-gold text-bg-deep border-gold font-bold hover:bg-gold-light`}>
+
+        {/* 复制按钮 */}
+        <button
+          onClick={handleCopy}
+          className="px-4 sm:px-5 py-1.5 sm:py-2 text-xs sm:text-sm rounded-lg sm:rounded-xl bg-accent text-white font-medium
+            hover:bg-accent-dark active:scale-95 transition-all duration-200
+            shadow-sm shadow-accent/20 whitespace-nowrap"
+        >
           {copied ? '已复制' : '复制号码'}
         </button>
       </div>
