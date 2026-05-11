@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 项目概述
 
-"吉祥选号" — 基于中国传统命理学的彩票选号工具（双色球/大乐透），提供两种选号模式：今日黄道选号和生辰本命选号。
+"吉日选号工具" — 基于中国传统命理学的彩票选号工具（双色球/大乐透），提供两种选号模式：今日黄道选号和生辰本命选号。
 
 ## 常用命令
 
