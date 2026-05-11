@@ -4,7 +4,7 @@ import ThemeToggle from '@/components/ThemeToggle'
 import Logo from '@/components/Logo'
 
 const SITE_URL = 'https://jrxh.vercel.app'
-const SITE_NAME = '吉祥选号'
+const SITE_NAME = '吉日选号工具'
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -16,7 +16,8 @@ export const metadata = {
   keywords: [
     '彩票选号', '双色球选号', '大乐透选号', '命理选号',
     '黄道吉日选号', '生辰八字选号', '五行选号',
-    '彩票号码生成', '幸运号码', '吉祥选号',
+    '彩票号码生成', '幸运号码', '吉日选号工具',
+    '吉日选号', '黄道吉日', '吉日选号器',
     'lottery number picker', 'Chinese fortune numbers',
   ],
   authors: [{ name: SITE_NAME }],
