@@ -115,6 +115,8 @@ export default function RootLayout({ children }) {
         />
         {/* 百度站长验证 - 添加后在百度搜索资源平台提交 */}
         <meta name="baidu-site-verification" content="codeva-tQnKK0Em5j" />
+        {/* Umami 统计 */}
+        <script defer src="https://umami.scorp.fun/script.js" data-website-id="2cc86870-7cfe-496c-9ef1-1a4cf24c7ba1"></script>
       </head>
       <body className="h-[100dvh] overflow-hidden bg-bg-primary text-text-primary font-chinese antialiased grain-overlay">
         {/* 大气背景层 */}
