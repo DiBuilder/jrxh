@@ -20,27 +20,30 @@ export default function BirthdayForm({ onGenerate }) {
     if (isValid) onGenerate({ year, month, day, hour })
   }
 
+  const selectClasses = `w-full bg-bg-tertiary/60 text-text-primary border border-border/60 rounded-xl
+    px-3 py-2.5 text-sm appearance-none cursor-pointer
+    focus:outline-none focus:ring-2 focus:ring-accent/20 focus:border-accent/60
+    transition-all duration-200 hover:border-border-strong`
+
   return (
-    <div className="w-full max-w-md mx-auto px-3 sm:px-4">
-      <div className="bg-card rounded-xl sm:rounded-2xl border border-border p-4 sm:p-6 shadow-sm">
-        {/* 标题 */}
-        <div className="flex items-center gap-2 mb-1.5 sm:mb-2">
-          <div className="w-1 h-4 sm:h-5 rounded-full bg-accent" />
+    <div className="w-full max-w-md mx-auto px-4 sm:px-5">
+      <div className="glass-card p-5 sm:p-6 animate-scale-in">
+        {/* 标题装饰 */}
+        <div className="flex items-center gap-3 mb-1">
+          <div className="gold-accent-line" />
           <h3 className="text-xs sm:text-sm font-medium text-text-secondary tracking-wide">生辰信息</h3>
         </div>
-        <p className="text-[10px] sm:text-xs text-text-tertiary mb-4 sm:mb-6 ml-3">输入出生日期和时辰，生成本命号码</p>
+        <p className="text-[11px] text-text-tertiary mb-5 ml-[2rem]">输入出生日期和时辰，生成本命号码</p>
 
-        <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
-          {/* 日期选择 - 375px 优化：缩小间距 */}
-          <div className="grid grid-cols-3 gap-2 sm:gap-3">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* 日期选择 */}
+          <div className="grid grid-cols-3 gap-2.5">
             <div>
-              <label className="block text-[10px] sm:text-xs text-text-tertiary mb-1 sm:mb-1.5">年份</label>
+              <label className="block text-[11px] text-text-tertiary mb-1.5 font-medium">年份</label>
               <select
                 value={year}
                 onChange={e => setYear(Number(e.target.value))}
-                className="w-full bg-bg-tertiary text-text-primary border border-border rounded-lg sm:rounded-xl
-                  px-2 sm:px-3 py-2 sm:py-2.5 text-xs sm:text-sm
-                  focus:outline-none focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all"
+                className={selectClasses}
               >
                 {Array.from({ length: thisYear - 1900 + 1 }, (_, i) => 1900 + i).reverse().map(y => (
                   <option key={y} value={y}>{y}年</option>
@@ -48,13 +51,11 @@ export default function BirthdayForm({ onGenerate }) {
               </select>
             </div>
             <div>
-              <label className="block text-[10px] sm:text-xs text-text-tertiary mb-1 sm:mb-1.5">月份</label>
+              <label className="block text-[11px] text-text-tertiary mb-1.5 font-medium">月份</label>
               <select
                 value={month}
                 onChange={e => setMonth(Number(e.target.value))}
-                className="w-full bg-bg-tertiary text-text-primary border border-border rounded-lg sm:rounded-xl
-                  px-2 sm:px-3 py-2 sm:py-2.5 text-xs sm:text-sm
-                  focus:outline-none focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all"
+                className={selectClasses}
               >
                 {Array.from({ length: 12 }, (_, i) => i + 1).map(m => (
                   <option key={m} value={m}>{m}月</option>
@@ -62,13 +63,11 @@ export default function BirthdayForm({ onGenerate }) {
               </select>
             </div>
             <div>
-              <label className="block text-[10px] sm:text-xs text-text-tertiary mb-1 sm:mb-1.5">日期</label>
+              <label className="block text-[11px] text-text-tertiary mb-1.5 font-medium">日期</label>
               <select
                 value={day}
                 onChange={e => setDay(Number(e.target.value))}
-                className="w-full bg-bg-tertiary text-text-primary border border-border rounded-lg sm:rounded-xl
-                  px-2 sm:px-3 py-2 sm:py-2.5 text-xs sm:text-sm
-                  focus:outline-none focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all"
+                className={selectClasses}
               >
                 {Array.from({ length: 31 }, (_, i) => i + 1).map(d => (
                   <option key={d} value={d}>{d}日</option>
@@ -79,13 +78,11 @@ export default function BirthdayForm({ onGenerate }) {
 
           {/* 时辰选择 */}
           <div>
-            <label className="block text-[10px] sm:text-xs text-text-tertiary mb-1 sm:mb-1.5">时辰</label>
+            <label className="block text-[11px] text-text-tertiary mb-1.5 font-medium">时辰</label>
             <select
               value={hour}
               onChange={e => setHour(Number(e.target.value))}
-              className="w-full bg-bg-tertiary text-text-primary border border-border rounded-lg sm:rounded-xl
-                px-2 sm:px-3 py-2 sm:py-2.5 text-xs sm:text-sm
-                focus:outline-none focus:ring-2 focus:ring-accent/20 focus:border-accent transition-all"
+              className={selectClasses}
             >
               {SHI_CHEN_OPTIONS.map((label, i) => (
                 <option key={i} value={i}>{label}</option>
@@ -97,9 +94,15 @@ export default function BirthdayForm({ onGenerate }) {
           <button
             type="submit"
             disabled={!isValid}
-            className="w-full py-2.5 sm:py-3 text-sm sm:text-base rounded-xl bg-accent text-white font-medium
-              hover:bg-accent-dark active:scale-[0.98] transition-all duration-200
-              shadow-sm shadow-accent/20 disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100"
+            className="w-full py-3 text-sm sm:text-base rounded-xl font-medium text-white
+              active:scale-[0.98] transition-all duration-300
+              disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100"
+            style={{
+              background: isValid
+                ? 'linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%)'
+                : 'var(--color-border-strong)',
+              boxShadow: isValid ? '0 4px 16px var(--color-accent-glow)' : 'none',
+            }}
           >
             生成号码
           </button>

@@ -6,27 +6,29 @@ export default function TopTabs() {
   const pathname = usePathname()
 
   return (
-    <div className="flex justify-center gap-2 pt-2 pb-3 sm:pt-4 sm:pb-4 px-2">
-      <Link
-        href="/huangdao"
-        className={`px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm rounded-lg sm:rounded-xl transition-all duration-200 whitespace-nowrap ${
-          pathname === '/huangdao'
-            ? 'bg-accent text-white shadow-sm shadow-accent/20 font-medium'
-            : 'text-text-tertiary hover:text-text-secondary hover:bg-bg-tertiary'
-        }`}
-      >
-        今日黄道选号
-      </Link>
-      <Link
-        href="/bazi"
-        className={`px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm rounded-lg sm:rounded-xl transition-all duration-200 whitespace-nowrap ${
-          pathname === '/bazi'
-            ? 'bg-accent text-white shadow-sm shadow-accent/20 font-medium'
-            : 'text-text-tertiary hover:text-text-secondary hover:bg-bg-tertiary'
-        }`}
-      >
-        生辰本命选号
-      </Link>
-    </div>
+    <nav className="flex justify-center px-4 sm:px-5 pb-3" role="navigation" aria-label="主导航">
+      <div className="inline-flex items-center gap-1 p-1 bg-bg-tertiary/80 backdrop-blur-sm rounded-2xl border border-border/50">
+        <Link
+          href="/huangdao"
+          className={`relative px-5 sm:px-6 py-2 text-xs sm:text-sm rounded-xl transition-all duration-300 whitespace-nowrap ${
+            pathname === '/huangdao'
+              ? 'bg-accent text-white font-medium shadow-md shadow-accent/20'
+              : 'text-text-tertiary hover:text-text-secondary'
+          }`}
+        >
+          今日黄道选号
+        </Link>
+        <Link
+          href="/bazi"
+          className={`relative px-5 sm:px-6 py-2 text-xs sm:text-sm rounded-xl transition-all duration-300 whitespace-nowrap ${
+            pathname === '/bazi'
+              ? 'bg-accent text-white font-medium shadow-md shadow-accent/20'
+              : 'text-text-tertiary hover:text-text-secondary'
+          }`}
+        >
+          生辰本命选号
+        </Link>
+      </div>
+    </nav>
   )
 }

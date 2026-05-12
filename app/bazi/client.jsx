@@ -63,7 +63,7 @@ export default function BaziClient() {
   }
 
   return (
-    <div className="h-full flex flex-col bg-bg-primary overflow-hidden">
+    <div className="h-full flex flex-col overflow-hidden">
       {/* 内容区 - 可滚动 */}
       <div className="flex-1 flex flex-col items-center px-3 sm:px-4 overflow-y-auto py-4">
         {/* 生辰表单 */}
@@ -84,7 +84,7 @@ export default function BaziClient() {
 
         {/* 空状态提示 */}
         {!currentNumbers && (
-          <div className="py-12 text-text-tertiary text-sm">
+          <div className="py-12 text-text-tertiary text-sm animate-fade-up delay-400" style={{ opacity: 0 }}>
             填入生辰信息，点击生成号码
           </div>
         )}
@@ -98,14 +98,14 @@ export default function BaziClient() {
           numbers={currentNumbers}
           onCopy={handleCopy}
         />
-        <div className="bg-bg-tertiary border-t border-border py-1.5 overflow-hidden">
+        <div className="bg-bg-tertiary/60 border-t border-border/30 py-1.5 overflow-hidden">
           <div className="flex whitespace-nowrap animate-marquee w-max">
-            <span className="text-[10px] text-text-tertiary pr-8">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</span>
-            <span className="text-[10px] text-text-tertiary pr-8">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</span>
+            <span className="text-[10px] text-text-tertiary/70 tracking-wide pr-8">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</span>
+            <span className="text-[10px] text-text-tertiary/70 tracking-wide pr-8">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</span>
           </div>
         </div>
-        <div className="bg-bg-tertiary py-1.5 text-center">
-          <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer" className="text-[10px] text-text-tertiary hover:underline">浙ICP备2021033705号-4</a>
+        <div className="bg-bg-tertiary/60 py-1.5 text-center">
+          <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer" className="text-[10px] text-text-tertiary/60 hover:text-text-tertiary transition-colors">浙ICP备2021033705号-4</a>
         </div>
       </div>
     </div>

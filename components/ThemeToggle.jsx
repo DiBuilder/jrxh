@@ -23,7 +23,6 @@ export default function ThemeToggle() {
     } else if (value === 'light') {
       root.classList.remove('dark')
     } else {
-      // system
       if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         root.classList.add('dark')
       } else {
@@ -38,7 +37,6 @@ export default function ThemeToggle() {
     applyTheme(value)
   }
 
-  // 监听系统主题变化
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
     const handler = () => {
@@ -59,14 +57,14 @@ export default function ThemeToggle() {
   ]
 
   return (
-    <div className="flex items-center gap-1 bg-bg-tertiary rounded-xl p-1">
+    <div className="flex items-center gap-0.5 bg-bg-tertiary/60 rounded-xl p-0.5 border border-border/30">
       {options.map(({ value, label, icon: Icon }) => (
         <button
           key={value}
           onClick={() => handleChange(value)}
-          className={`flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-lg transition-all duration-200 ${
+          className={`flex items-center gap-1.5 px-2.5 py-1.5 text-xs rounded-lg transition-all duration-200 ${
             theme === value
-              ? 'bg-white dark:bg-bg-secondary text-text-primary shadow-sm'
+              ? 'bg-white dark:bg-bg-tertiary text-text-primary shadow-sm ring-1 ring-border/50'
               : 'text-text-tertiary hover:text-text-secondary'
           }`}
           title={label}

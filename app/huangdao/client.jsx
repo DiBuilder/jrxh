@@ -63,15 +63,15 @@ export default function HuangdaoClient() {
   }
 
   return (
-    <div className="h-full flex flex-col bg-bg-primary overflow-hidden">
+    <div className="h-full flex flex-col overflow-hidden">
       {/* 内容区 - 可滚动 */}
       <div className="flex-1 flex flex-col items-center justify-center px-4 overflow-y-auto">
         {/* 换一注按钮 */}
         <button
           onClick={handleRegenerate}
-          className="mt-4 mb-4 px-5 py-2 text-sm rounded-xl border border-border
-            text-text-secondary hover:text-accent hover:border-accent
-            transition-all duration-200 shrink-0"
+          className="mt-4 mb-4 px-6 py-2 text-sm rounded-xl border border-border/60
+            text-text-secondary hover:text-accent hover:border-accent/40 hover:bg-accent-subtle
+            transition-all duration-300 shrink-0 active:scale-95"
         >
           换一注
         </button>
@@ -96,14 +96,14 @@ export default function HuangdaoClient() {
           numbers={todayNumbers.numbers}
           onCopy={handleCopy}
         />
-        <div className="bg-bg-tertiary border-t border-border py-1.5 overflow-hidden">
+        <div className="bg-bg-tertiary/60 border-t border-border/30 py-1.5 overflow-hidden">
           <div className="flex whitespace-nowrap animate-marquee w-max">
-            <span className="text-[10px] text-text-tertiary pr-8">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</span>
-            <span className="text-[10px] text-text-tertiary pr-8">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</span>
+            <span className="text-[10px] text-text-tertiary/70 tracking-wide pr-8">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</span>
+            <span className="text-[10px] text-text-tertiary/70 tracking-wide pr-8">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</span>
           </div>
         </div>
-        <div className="bg-bg-tertiary py-1.5 text-center">
-          <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer" className="text-[10px] text-text-tertiary hover:underline">浙ICP备2021033705号-4</a>
+        <div className="bg-bg-tertiary/60 py-1.5 text-center">
+          <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer" className="text-[10px] text-text-tertiary/60 hover:text-text-tertiary transition-colors">浙ICP备2021033705号-4</a>
         </div>
       </div>
     </div>

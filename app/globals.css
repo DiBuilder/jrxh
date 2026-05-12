@@ -2,77 +2,304 @@
 
 @theme {
   /* 背景色系 - 浅色模式 */
-  --color-bg-primary: #FAFAFA;
+  --color-bg-primary: #F8F6F3;
   --color-bg-secondary: #FFFFFF;
-  --color-bg-tertiary: #F5F5F5;
+  --color-bg-tertiary: #F0EDE8;
+  --color-bg-deep: #1A1410;
 
   /* 文字色系 */
-  --color-text-primary: #1A1A2E;
-  --color-text-secondary: #4A4A68;
-  --color-text-tertiary: #8E8EA0;
+  --color-text-primary: #1A1410;
+  --color-text-secondary: #5C5347;
+  --color-text-tertiary: #9C9288;
 
-  /* 强调色 - 温暖红橙 */
-  --color-accent: #E85D4A;
-  --color-accent-light: #FF7B6B;
-  --color-accent-dark: #C94535;
-  --color-accent-subtle: #FFF0EE;
+  /* 强调色 - 朱砂红 */
+  --color-accent: #C43B2A;
+  --color-accent-light: #E85D4A;
+  --color-accent-dark: #9A2E20;
+  --color-accent-subtle: #FDF0EE;
+  --color-accent-glow: rgba(196, 59, 42, 0.25);
+
+  /* 金色系 - 帝王金 */
+  --color-gold: #B8941F;
+  --color-gold-light: #D4AF37;
+  --color-gold-dark: #8B6F14;
+  --color-gold-subtle: #FBF6E8;
+
+  /* 翡翠绿 */
+  --color-jade: #2D7D5F;
+  --color-jade-light: #3FA07A;
+  --color-jade-subtle: #EEF7F3;
 
   /* 号码球色系 */
-  --color-ball-red: #E85D4A;
-  --color-ball-red-glow: rgba(232, 93, 74, 0.3);
-  --color-ball-blue: #4A90D9;
-  --color-ball-blue-glow: rgba(74, 144, 217, 0.3);
+  --color-ball-red: #C43B2A;
+  --color-ball-red-glow: rgba(196, 59, 42, 0.35);
+  --color-ball-red-deep: #9A2E20;
+  --color-ball-blue: #2A6FAD;
+  --color-ball-blue-glow: rgba(42, 111, 173, 0.35);
+  --color-ball-blue-deep: #1D5489;
 
   /* 边框与分割线 */
-  --color-border: #E8E8EE;
-  --color-border-strong: #D0D0DC;
+  --color-border: #E5DFD8;
+  --color-border-strong: #D0C8BE;
 
   /* 卡片 */
   --color-card: #FFFFFF;
-  --color-card-hover: #FAFAFE;
+  --color-card-hover: #FDFCFA;
+  --color-card-glow: rgba(184, 148, 31, 0.06);
 
   /* 字体 */
-  --font-family-chinese: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-family-chinese: "PingFang SC", "Noto Serif SC", "STSong", "SimSun", "Source Han Serif SC", serif;
+  --font-family-display: "Noto Serif SC", "STSong", "SimSun", "Source Han Serif SC", serif;
 
   /* 动画 */
-  --animate-marquee: marquee 12s linear infinite;
-  --animate-pulse-soft: pulse-soft 2s ease-in-out infinite;
-  --animate-float: float 3s ease-in-out infinite;
+  --animate-marquee: marquee 15s linear infinite;
+  --animate-float-in: float-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-glow-pulse: glow-pulse 2.5s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s ease-in-out infinite;
+  --animate-fade-up: fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-scale-in: scale-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-orb-reveal: orb-reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 /* 深色模式变量覆盖 */
 .dark {
-  --color-bg-primary: #0F0F1A;
-  --color-bg-secondary: #1A1A2E;
-  --color-bg-tertiary: #252540;
-  --color-text-primary: #F0F0F5;
-  --color-text-secondary: #B0B0C0;
-  --color-text-tertiary: #6E6E85;
-  --color-accent: #FF7B6B;
-  --color-accent-light: #FF9B8E;
-  --color-accent-dark: #E85D4A;
-  --color-accent-subtle: rgba(255, 123, 107, 0.1);
-  --color-ball-red: #FF7B6B;
-  --color-ball-red-glow: rgba(255, 123, 107, 0.25);
+  --color-bg-primary: #0E0C0A;
+  --color-bg-secondary: #1A1714;
+  --color-bg-tertiary: #242019;
+  --color-bg-deep: #0A0908;
+
+  --color-text-primary: #F0EBE3;
+  --color-text-secondary: #B8AFA3;
+  --color-text-tertiary: #7A7068;
+
+  --color-accent: #E85D4A;
+  --color-accent-light: #FF7B6B;
+  --color-accent-dark: #C43B2A;
+  --color-accent-subtle: rgba(232, 93, 74, 0.12);
+  --color-accent-glow: rgba(232, 93, 74, 0.3);
+
+  --color-gold: #D4AF37;
+  --color-gold-light: #E8C84A;
+  --color-gold-dark: #B8941F;
+  --color-gold-subtle: rgba(212, 175, 55, 0.12);
+
+  --color-jade: #3FA07A;
+  --color-jade-light: #52B891;
+  --color-jade-subtle: rgba(63, 160, 122, 0.12);
+
+  --color-ball-red: #E85D4A;
+  --color-ball-red-glow: rgba(232, 93, 74, 0.3);
+  --color-ball-red-deep: #C43B2A;
   --color-ball-blue: #5BA0E9;
-  --color-ball-blue-glow: rgba(91, 160, 233, 0.25);
-  --color-border: #2A2A45;
-  --color-border-strong: #3A3A55;
-  --color-card: #1A1A2E;
-  --color-card-hover: #20203A;
+  --color-ball-blue-glow: rgba(91, 160, 233, 0.3);
+  --color-ball-blue-deep: #2A6FAD;
+
+  --color-border: #2A2520;
+  --color-border-strong: #3A3430;
+
+  --color-card: #1A1714;
+  --color-card-hover: #201D18;
+  --color-card-glow: rgba(212, 175, 55, 0.04);
 }
+
+/* ============ 关键帧动画 ============ */
 
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
 
-@keyframes pulse-soft {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.85; }
+@keyframes float-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 12px var(--glow-color, rgba(196, 59, 42, 0.3)); }
+  50% { box-shadow: 0 0 24px var(--glow-color, rgba(196, 59, 42, 0.5)); }
 }
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes orb-reveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(-20deg);
+    filter: blur(8px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.08) rotate(2deg);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    filter: blur(0);
+  }
+}
+
+@keyframes grain-drift {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-2%, 1%); }
+  50% { transform: translate(1%, -2%); }
+  75% { transform: translate(2%, 1%); }
+}
+
+/* ============ 全局基础样式 ============ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* 自定义选中颜色 */
+::selection {
+  background: var(--color-accent);
+  color: white;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-tertiary);
+}
+
+/* ============ 工具类 ============ */
+
+/* 胶片颗粒纹理覆盖层 */
+.grain-overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  animation: grain-drift 8s steps(4) infinite;
+}
+
+.dark .grain-overlay::before {
+  opacity: 0.04;
+}
+
+/* 渐变网格背景 */
+.mesh-bg {
+  position: relative;
+}
+
+.mesh-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 600px 400px at 20% 10%, var(--color-accent-subtle) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 500px at 80% 90%, var(--color-gold-subtle) 0%, transparent 70%);
+  opacity: 0.6;
+}
+
+.dark .mesh-bg::after {
+  opacity: 0.3;
+}
+
+/* 玻璃卡片 */
+.glass-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dark .glass-card {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    0 8px 24px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.glass-card:hover {
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    0 12px 32px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* 金色装饰线 */
+.gold-accent-line {
+  width: 2rem;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-gold), var(--color-gold-light), transparent);
+  border-radius: 999px;
+}
+
+/* 装饰分隔符 */
+.divider-ornament {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-text-tertiary);
+}
+
+.divider-ornament::before,
+.divider-ornament::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+}
+
+/* 延迟动画工具类 */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }

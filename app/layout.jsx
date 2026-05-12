@@ -114,23 +114,34 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {/* 百度站长验证 - 添加后在百度搜索资源平台提交 */}
-        <meta name="baidu-site-verification" content="" />
+        <meta name="baidu-site-verification" content="codeva-fJIPLjlFs3" />
       </head>
-      <body className="h-[100dvh] overflow-hidden bg-bg-primary text-text-primary font-chinese antialiased">
-        <div className="max-w-lg mx-auto h-full flex flex-col">
-          <div className="flex items-center justify-between px-4 pt-3 shrink-0">
-            <div className="flex items-center gap-2">
-              <Logo size={32} />
-              <span className="text-sm font-medium text-text-primary">{SITE_NAME}</span>
+      <body className="h-[100dvh] overflow-hidden bg-bg-primary text-text-primary font-chinese antialiased grain-overlay">
+        {/* 大气背景层 */}
+        <div className="fixed inset-0 pointer-events-none mesh-bg" />
+
+        <div className="relative max-w-lg mx-auto h-full flex flex-col z-10">
+          {/* 顶部 Header */}
+          <header className="flex items-center justify-between px-4 sm:px-5 pt-4 pb-1 shrink-0 animate-fade-up">
+            <div className="flex items-center gap-2.5">
+              <Logo size={34} />
+              <div className="flex flex-col">
+                <span className="text-sm font-bold tracking-wide text-text-primary leading-tight">{SITE_NAME}</span>
+                <span className="text-[9px] text-text-tertiary tracking-[0.15em] leading-tight">命理 · 选号</span>
+              </div>
             </div>
             <ThemeToggle />
-          </div>
-          <div className="shrink-0">
+          </header>
+
+          {/* 导航标签 */}
+          <div className="shrink-0 animate-fade-up delay-100">
             <TopTabs />
           </div>
-          <div className="flex-1 min-h-0">
+
+          {/* 主内容区 */}
+          <main className="flex-1 min-h-0">
             {children}
-          </div>
+          </main>
         </div>
       </body>
     </html>
