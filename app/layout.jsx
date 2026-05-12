@@ -114,7 +114,7 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {/* 百度站长验证 - 添加后在百度搜索资源平台提交 */}
-        <meta name="baidu-site-verification" content="codeva-fJIPLjlFs3" />
+        <meta name="baidu-site-verification" content="codeva-SKQWneLWSt" />
       </head>
       <body className="h-[100dvh] overflow-hidden bg-bg-primary text-text-primary font-chinese antialiased grain-overlay">
         {/* 大气背景层 */}
