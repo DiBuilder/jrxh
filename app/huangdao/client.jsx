@@ -102,6 +102,9 @@ export default function HuangdaoClient() {
             <span className="text-[10px] text-text-tertiary pr-8">温馨提示：本工具仅供娱乐，不构成购彩建议，理性购彩，量力而行</span>
           </div>
         </div>
+        <div className="bg-bg-tertiary py-1.5 text-center">
+          <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer" className="text-[10px] text-text-tertiary hover:underline">浙ICP备2021033705号-4</a>
+        </div>
       </div>
     </div>
   )
