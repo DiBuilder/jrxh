@@ -11,5 +11,12 @@ const nextConfig = {
       '@': resolve(__dirname),
     },
   },
+  redirects: async () => [
+    {
+      source: '/huangdao',
+      destination: '/',
+      permanent: true,
+    },
+  ],
 }
 export default nextConfig
