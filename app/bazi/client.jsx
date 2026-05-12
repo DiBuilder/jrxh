@@ -66,6 +66,7 @@ export default function BaziClient() {
     <div className="h-full flex flex-col overflow-hidden">
       {/* 内容区 - 可滚动 */}
       <div className="flex-1 flex flex-col items-center px-3 sm:px-4 overflow-y-auto py-4">
+        <h1 className="sr-only">生辰本命选号 - 八字五行补缺选号</h1>
         {/* 生辰表单 */}
         <BirthdayForm onGenerate={handleBirthGenerate} />
 

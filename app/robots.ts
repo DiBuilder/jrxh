@@ -7,11 +7,7 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: '*',
         allow: '/',
       },
-      {
-        userAgent: 'Baiduspider',
-        allow: '/',
-      },
     ],
-    sitemap: 'https://jrxh.vercel.app/sitemap.xml',
+    sitemap: 'https://www.jrxh.top/sitemap.xml',
   }
 }

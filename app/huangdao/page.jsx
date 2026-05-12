@@ -7,10 +7,10 @@ export const metadata = {
   openGraph: {
     title: '今日黄道选号 | 吉日选号工具',
     description: '基于农历日干支和吉时辰，每日黄道吉时生财星入局',
-    url: 'https://jrxh.vercel.app/huangdao',
+    url: 'https://www.jrxh.top/huangdao',
   },
   alternates: {
-    canonical: 'https://jrxh.vercel.app/huangdao',
+    canonical: 'https://www.jrxh.top/huangdao',
   },
 }
 

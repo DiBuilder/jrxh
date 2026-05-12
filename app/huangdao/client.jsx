@@ -66,6 +66,7 @@ export default function HuangdaoClient() {
     <div className="h-full flex flex-col overflow-hidden">
       {/* 内容区 - 可滚动 */}
       <div className="flex-1 flex flex-col items-center justify-center px-4 overflow-y-auto">
+        <h1 className="sr-only">今日黄道选号 - 双色球大乐透命理选号</h1>
         {/* 换一注按钮 */}
         <button
           onClick={handleRegenerate}

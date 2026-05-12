@@ -3,7 +3,7 @@ import TopTabs from '@/components/TopTabs'
 import ThemeToggle from '@/components/ThemeToggle'
 import Logo from '@/components/Logo'
 
-const SITE_URL = 'https://jrxh.vercel.app'
+const SITE_URL = 'https://www.jrxh.top'
 const SITE_NAME = '吉日选号工具'
 
 export const metadata = {
@@ -41,7 +41,7 @@ export const metadata = {
     description: '今日黄道选号 + 生辰本命选号，支持双色球和大乐透。传统命理与现代设计的结合。',
     images: [
       {
-        url: `${SITE_URL}/og.png`,
+        url: `${SITE_URL}/og.svg`,
         width: 1200,
         height: 630,
         alt: SITE_NAME,
@@ -52,7 +52,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: `${SITE_NAME} - 彩票命理选号工具`,
     description: '基于中国传统命理学的彩票选号，支持双色球和大乐透',
-    images: [`${SITE_URL}/og.png`],
+    images: [`${SITE_URL}/og.svg`],
   },
   robots: {
     index: true,
