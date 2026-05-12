@@ -58,15 +58,13 @@ export default function BaziClient() {
     setBirthResult(null)
   }, [])
 
-  if (showDisclaimer) {
-    return <DisclaimerModal onAgree={handleDismiss} />
-  }
-
   return (
-    <div className="h-full flex flex-col overflow-hidden">
+    <>
+      {/* 免责声明覆盖层 */}
+      {showDisclaimer && <DisclaimerModal onAgree={handleDismiss} />}
+
       {/* 内容区 - 可滚动 */}
       <div className="flex-1 flex flex-col items-center px-3 sm:px-4 overflow-y-auto py-4">
-        <h1 className="sr-only">生辰本命选号 - 八字五行补缺选号</h1>
         {/* 生辰表单 */}
         <BirthdayForm onGenerate={handleBirthGenerate} />
 
@@ -109,6 +107,6 @@ export default function BaziClient() {
           <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer" className="text-[10px] text-text-tertiary/60 hover:text-text-tertiary transition-colors">浙ICP备2021033705号-4</a>
         </div>
       </div>
-    </div>
+    </>
   )
 }

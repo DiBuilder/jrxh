@@ -15,5 +15,22 @@ export const metadata = {
 }
 
 export default function BaziPage() {
-  return <BaziClient />
+  return (
+    <div className="h-full flex flex-col overflow-hidden">
+      {/* SEO 静态内容 - Server Component 渲染 */}
+      <div className="sr-only">
+        <h1>生辰本命选号 - 八字五行补缺选号</h1>
+        <p>根据您的生辰八字，分析五行旺衰，找出命中所缺五行，取河图尾数对应号码补之。蓝球由日柱纳音五行定夺。支持双色球和大乐透两种彩票类型，为您生成个性化本命号码。</p>
+        <nav aria-label="站点导航">
+          <ul>
+            <li><a href="/huangdao">今日黄道选号</a> - 每日自动更新的命理选号</li>
+            <li><a href="/bazi">生辰本命选号</a> - 基于八字五行补缺的个性化选号</li>
+          </ul>
+        </nav>
+      </div>
+
+      {/* 交互内容 - Client Component */}
+      <BaziClient />
+    </div>
+  )
 }

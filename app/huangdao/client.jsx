@@ -58,15 +58,13 @@ export default function HuangdaoClient() {
     setRegenerateCount(0)
   }, [])
 
-  if (showDisclaimer) {
-    return <DisclaimerModal onAgree={handleDismiss} />
-  }
-
   return (
-    <div className="h-full flex flex-col overflow-hidden">
+    <>
+      {/* 免责声明覆盖层 */}
+      {showDisclaimer && <DisclaimerModal onAgree={handleDismiss} />}
+
       {/* 内容区 - 可滚动 */}
       <div className="flex-1 flex flex-col items-center justify-center px-4 overflow-y-auto">
-        <h1 className="sr-only">今日黄道选号 - 双色球大乐透命理选号</h1>
         {/* 换一注按钮 */}
         <button
           onClick={handleRegenerate}
@@ -107,6 +105,6 @@ export default function HuangdaoClient() {
           <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer" className="text-[10px] text-text-tertiary/60 hover:text-text-tertiary transition-colors">浙ICP备2021033705号-4</a>
         </div>
       </div>
-    </div>
+    </>
   )
 }
