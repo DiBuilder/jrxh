@@ -7,10 +7,10 @@ export const metadata = {
   openGraph: {
     title: '生辰本命选号 | 吉日选号工具',
     description: '根据生辰八字五行补缺原理，缺什么补什么，纳音定蓝球',
-    url: 'https://www.jrxh.top/bazi',
+    url: 'https://jrxh.top/bazi',
   },
   alternates: {
-    canonical: 'https://www.jrxh.top/bazi',
+    canonical: 'https://jrxh.top/bazi',
   },
 }
 

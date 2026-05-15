@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       },
     ],
-    sitemap: 'https://www.jrxh.top/sitemap.xml',
+    sitemap: 'https://jrxh.top/sitemap.xml',
   }
 }

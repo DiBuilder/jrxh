@@ -3,7 +3,7 @@ import TopTabs from '@/components/TopTabs'
 import ThemeToggle from '@/components/ThemeToggle'
 import Logo from '@/components/Logo'
 
-const SITE_URL = 'https://www.jrxh.top'
+const SITE_URL = 'https://jrxh.top'
 const SITE_NAME = '吉日选号工具'
 
 export const metadata = {
