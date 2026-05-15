@@ -114,7 +114,7 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {/* 百度站长验证 - 添加后在百度搜索资源平台提交 */}
-        <meta name="baidu-site-verification" content="codeva-tQnKK0Em5j" />
+        <meta name="baidu-site-verification" content="codeva-ZqJ2aMGNOE" />
         {/* Umami 统计 */}
         <script defer src="https://umami.scorp.fun/script.js" data-website-id="2cc86870-7cfe-496c-9ef1-1a4cf24c7ba1"></script>
       </head>
