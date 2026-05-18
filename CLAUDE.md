@@ -32,7 +32,6 @@ pnpm start            # 启动生产服务器
 
 - `/` — 今日黄道选号（基于当日干支+吉时），SEO 内容由 Server Component 渲染
 - `/bazi` — 生辰本命选号（基于用户生辰八字），SEO 内容由 Server Component 渲染
-- `/huangdao` — 301 永久重定向到 `/`（保留旧 URL SEO 权重）
 
 每个路由由 Server Component 的 `page.jsx` + Client Component 组成。`page.jsx` 负责 metadata 导出和 SEO 静态内容（H1、描述文本），Client Component 包含所有交互逻辑。免责声明弹窗作为覆盖层渲染，不替换页面内容。
 
